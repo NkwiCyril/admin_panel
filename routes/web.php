@@ -21,10 +21,9 @@ Route::middleware('auth')->group(function () {
  * Routes wrt admin
  */
 
-Route::group(['middleware' => ['role:admin']], function () {
-    Route::get('/admin', function () {
-        return view('admin.index');
-    })->name('admin.index');
-});
+Route::get('/admin', function () {
+    return view('admin.index');
+})->middleware('auth', 'role:admin')->name('admin.index');
+
 
 require __DIR__ . '/auth.php';
